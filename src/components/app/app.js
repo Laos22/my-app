@@ -28,26 +28,26 @@ class App extends Component {
             return {data : data.filter(item => item.id !== id)}
         })
     }
-    toogleIncrease = (id) => {
+    onToogleProp = (id, prop) => {
         this.setState(({data}) => ({
             data: data.map(item => {
                 if (item.id === id) {
-                    return {...item, increase: !item.increase}
+                    return {...item, [prop]: !item[prop]}
                 }
                 return item;
             })
         }))
     }
-    toogleRise = (id) => {
-        this.setState(({data}) => ({
-            data: data.map(item => {
-                if (item.id === id) {
-                    return {...item, rise: !item.rise}
-                }
-                return item;
-            })
-        }))
-    }
+    // toogleRise = (id) => {
+    //     this.setState(({data}) => ({
+    //         data: data.map(item => {
+    //             if (item.id === id) {
+    //                 return {...item, rise: !item.rise}
+    //             }
+    //             return item;
+    //         })
+    //     }))
+    // }
     addItem = (name, salary) => {
         const newItem = {
             name: name,
@@ -82,8 +82,7 @@ class App extends Component {
                      data={this.state.data}
                      onDelete={this.deleteItem}
                      onCreate={this.setItem}
-                     onToogleIncrease={this.toogleIncrease}
-                     onToogleRise={this.toogleRise} />
+                     onToogleProp={this.onToogleProp} />
                     <EmployeesAddForm onAdd={this.addItem}/>
             </div>
         )
